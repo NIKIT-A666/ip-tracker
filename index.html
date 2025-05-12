@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IP Tracker</title>
+</head>
+<body>
+  <h2>Your Location:</h2>
+  <p id="location">Loading...</p>
+
+  <script>
+    // Fetch user location data from IPinfo API
+    fetch("https://ipinfo.io/lite/8.8.8.8?token=11d71a12a4c8ac")
+      .then(res => res.json())  // Convert the response to JSON
+      .then(data => {
+        var location = data.loc;  // Coordinates (latitude, longitude)
+        var city = data.city;      // City
+        var region = data.region;  // Region
+        var country = data.country; // Country
+
+        // Display the location information
+        document.getElementById("location").innerText = City: ${city}, Region: ${region}, Country: ${country}, Coordinates: ${location};
+      })
+      .catch(error => {
+        document.getElementById("location").innerText = "Error fetching location data.";
+      });
+  </script>
+</body>
+</html>
